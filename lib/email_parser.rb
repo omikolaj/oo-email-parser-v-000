@@ -10,10 +10,15 @@ class EmailParser
   end
 
   def parse
-    binding.pry
-    emails.split.map do |email|
-      email.split(',')
-    end.flatten.uniq
+    temp = []
+    emails.split(" ").each do |w|
+        if(w.include?(","))
+          temp << w.gsub(",","")
+        else
+          temp << w
+        end
+    end
+    unique(temp)
   end
 
   def unique(array)
